@@ -8,7 +8,7 @@ print(name, type(name))
 
 # 保留字
 print(keyword.kwlist)
-# 刪除變數 ?
+# 刪除變數
 amount = 100
 print("amount:", amount)
 del amount
