@@ -6,6 +6,6 @@ for i in range(2, int(x/2+1)):
     print(i, x % i)
     if x % i == 0:
         isPrime = False
-        break;
+        break
 print("%d 是否是質數: %s" % (x, isPrime))
 

@@ -17,12 +17,12 @@ print("\n--------------------")
 # continue 直接跳下一個迴圈
 for x in range(1, 11):  # (1~10) 10個
     # x 資料大於5則迴圈停止
-    if x > 5 :
-        print('離開迴圈, x=',x)
-        break;
-    print("x=",x)
+    if x > 5:
+        print('離開迴圈, x=', x)
+        break
+    print("x=", x)
 print("\n--------------------")
-for x in range(1,11):
+for x in range(1, 11):
     # 遇到偶數則立即進行下一次的迴圈
     if x % 2 == 0:
         continue

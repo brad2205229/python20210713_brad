@@ -13,7 +13,7 @@ print("")
 **
 *
 '''
-max = 10# 最多幾顆星
+max = 10  # 最多幾顆星
 max = max + 1
 for x in range(1, max):
     for y in range(0, x):
