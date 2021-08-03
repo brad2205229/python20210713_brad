@@ -11,16 +11,61 @@ def getScore(cards):  # 計算總分
     for p in cards:
         score = score + point(p)
     return score
-if __name__ == '__main__':
-    pokers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'] * 4
+def playGame():
+    pokers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'] * 4 * 4
     r.shuffle(pokers)
     # 遊戲開始先拿到2張牌
     # 之後透過詢問可以連續拿牌，連續計算分數
-    my_cards = []  # 目前手中的牌
+    my_cards = []  # 目前 User 手中的牌
     my_cards.append(pokers.pop(0))
-    my_cards.append(pokers.pop(0))
-    # 計算每一張牌的分數
-    my_score = getScore(my_cards)
-    print(my_cards, my_score)
-
+    pc_cards = []  # 目前 PC 手中的牌
+    pc_cards.append(pokers.pop(0))
     # 之後透過詢問可以連續拿牌,連續計算分數
+    # User
+    while True:
+        # 計算每一張牌的分數
+        my_score = getScore(my_cards)
+        print(my_cards, my_score)
+        # 分數是否超過10.5
+        if(my_score > 10.5):
+            print('User 爆了')
+            break
+        resp = (input('User 還要牌嗎(y/n)?'))
+        if resp == 'y':
+            my_cards.append((pokers.pop(0)))
+        else:
+            break
+    # PC
+
+    while True:
+        # 計算每一張牌的分數
+        pc_score = getScore(pc_cards)
+        print("PC:", pc_cards, pc_score)
+        if (pc_score > 10.5):
+            print('PC 爆了')
+            break
+        if pc_score < 7:  # 小於 7 點強制補牌
+            pc_cards.append(pokers.pop(0))
+        else:
+            break
+    # Winner?
+    print("User:", my_score, "PC:", pc_score)
+    if my_score <= 10.5 and pc_score <= 10.5:
+        if my_score > pc_score:
+            print("Winner: User")
+            return 1
+        elif my_score < pc_score:
+            print("Winner: PC")
+            return -1
+        else:
+            print("平手")
+            return 0
+    elif my_score <= 10.5 and pc_score >= 10.5:
+        print("Winner: User")
+        return 1
+    elif my_score > 10.5 and pc_score <= 10.5:
+        print("Winner: PC")
+        return -1
+    else:
+        print("平手(都爆了)")
+        return 0
